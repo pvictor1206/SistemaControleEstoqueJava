@@ -18,7 +18,6 @@ public class SistemaControleEstoqueJava {
      */
     public static void main(String[] args) {
         new LoginPage().setVisible(true);
-        System.out.println("testeee1123");
     }
     
 }

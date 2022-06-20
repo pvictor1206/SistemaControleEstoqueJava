@@ -35,18 +35,19 @@ public class LoginPage extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtLogin = new javax.swing.JTextField();
         txtSenha = new javax.swing.JPasswordField();
-        buttonEntrar = new javax.swing.JButton();
+        btnEntrarSistema = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Login");
 
         jLabel1.setText("Login");
 
         jLabel2.setText("Senha");
 
-        buttonEntrar.setText("Entrar");
-        buttonEntrar.addActionListener(new java.awt.event.ActionListener() {
+        btnEntrarSistema.setText("Entrar");
+        btnEntrarSistema.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonEntrarActionPerformed(evt);
+                btnEntrarSistemaActionPerformed(evt);
             }
         });
 
@@ -57,7 +58,7 @@ public class LoginPage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(46, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(buttonEntrar)
+                    .addComponent(btnEntrarSistema)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -77,14 +78,14 @@ public class LoginPage extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
-                .addComponent(buttonEntrar)
+                .addComponent(btnEntrarSistema)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void buttonEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEntrarActionPerformed
+    private void btnEntrarSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarSistemaActionPerformed
         if(txtLogin.getText().equals("admin") && txtSenha.getText().equals("123")){
             
             login = txtLogin.getText();
@@ -97,7 +98,7 @@ public class LoginPage extends javax.swing.JFrame {
         }else{
             JOptionPane.showMessageDialog(null,"Dados incorretos");
         }
-    }//GEN-LAST:event_buttonEntrarActionPerformed
+    }//GEN-LAST:event_btnEntrarSistemaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,7 +136,7 @@ public class LoginPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonEntrar;
+    private javax.swing.JButton btnEntrarSistema;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JTextField txtLogin;
