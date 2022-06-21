@@ -7,7 +7,6 @@ package com.br.home;
 import com.br.autenticacao.LoginPage;
 import com.br.produtos.CadastrarProduto;
 import com.br.produtos.EditarProduto;
-import com.br.produtos.RemoverProduto;
 import java.awt.CardLayout;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -172,9 +171,7 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
-        RemoverProduto removeProdutos = new RemoverProduto();
-        jDesktopPane1.add(removeProdutos);
-        removeProdutos.setVisible(true);
+        JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     public DefaultTableModel getDtmProdutos() {
