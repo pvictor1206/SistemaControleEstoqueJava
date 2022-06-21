@@ -5,8 +5,9 @@
 package com.br.home;
 
 import com.br.autenticacao.LoginPage;
-import com.br.produto.CadastrarProduto;
+import com.br.produtos.CadastrarProduto;
 import java.awt.CardLayout;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -31,50 +32,20 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        btnEditarProduto = new javax.swing.JButton();
-        btnExcluirProduto = new javax.swing.JButton();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        tabelaProduto = new javax.swing.JTable();
+        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        btnCadastrarProduto = new javax.swing.JMenu();
-        jMenuCadastrarProduto = new javax.swing.JMenuItem();
+        btnProdutos = new javax.swing.JMenu();
+        btnCadastrarProduto = new javax.swing.JMenuItem();
+        btnEditarProduto = new javax.swing.JMenuItem();
+        btnExcluirProduto = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
 
-        btnEditarProduto.setText("Editar produto");
-        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarProdutoActionPerformed(evt);
-            }
-        });
-
-        btnExcluirProduto.setText("Excluir Produto");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(btnEditarProduto)
-                .addGap(66, 66, 66)
-                .addComponent(btnExcluirProduto)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(16, 16, 16)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnEditarProduto)
-                    .addComponent(btnExcluirProduto))
-                .addContainerGap(22, Short.MAX_VALUE))
-        );
-
-        tabelaProduto.setModel(new javax.swing.table.DefaultTableModel(
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -82,24 +53,53 @@ public class HomePage extends javax.swing.JFrame {
                 "Código", "Nome", "Preço", "Quantidade"
             }
         ));
-        jScrollPane2.setViewportView(tabelaProduto);
+        jScrollPane1.setViewportView(jTable1);
 
-        btnCadastrarProduto.setText("Produto");
+        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+
+        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
+        jDesktopPane1.setLayout(jDesktopPane1Layout);
+        jDesktopPane1Layout.setHorizontalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 470, Short.MAX_VALUE)
+        );
+        jDesktopPane1Layout.setVerticalGroup(
+            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+        );
+
+        btnProdutos.setText("Produto");
+        btnProdutos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosActionPerformed(evt);
+            }
+        });
+
+        btnCadastrarProduto.setText("Cadastrar Produto");
         btnCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarProdutoActionPerformed(evt);
             }
         });
+        btnProdutos.add(btnCadastrarProduto);
 
-        jMenuCadastrarProduto.setText("Cadastrar");
-        jMenuCadastrarProduto.addActionListener(new java.awt.event.ActionListener() {
+        btnEditarProduto.setText("Editar Produto");
+        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuCadastrarProdutoActionPerformed(evt);
+                btnEditarProdutoActionPerformed(evt);
             }
         });
-        btnCadastrarProduto.add(jMenuCadastrarProduto);
+        btnProdutos.add(btnEditarProduto);
 
-        jMenuBar1.add(btnCadastrarProduto);
+        btnExcluirProduto.setText("Excluir Produto");
+        btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExcluirProdutoActionPerformed(evt);
+            }
+        });
+        btnProdutos.add(btnExcluirProduto);
+
+        jMenuBar1.add(btnProdutos);
 
         jMenu2.setText("Help");
         jMenuBar1.add(jMenu2);
@@ -110,40 +110,34 @@ public class HomePage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 492, Short.MAX_VALUE)
+            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jDesktopPane1)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jMenuCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuCadastrarProdutoActionPerformed
-                
-                
-                CadastrarProduto telaCadastrarProduto = new CadastrarProduto();
-                telaCadastrarProduto.setVisible(true);
-                
-                //Reformular essa parte de baixo
-                DefaultTableModel dtmProdutos = (DefaultTableModel) tabelaProduto.getModel();
-                dtmProdutos.addRow(telaCadastrarProduto.dados);
-
-    }//GEN-LAST:event_jMenuCadastrarProdutoActionPerformed
-
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
-        //new CadastrarProduto().setVisible(true);
+                CadastrarProduto cadProdutos = new CadastrarProduto();
+                jDesktopPane1.add(cadProdutos);
+                cadProdutos.setVisible(true);
+
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
 
+    private void btnProdutosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosActionPerformed
+        JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
+    }//GEN-LAST:event_btnProdutosActionPerformed
+
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null, "Selecione um produto para editar");
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
+
+    private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
+        JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
+    }//GEN-LAST:event_btnExcluirProdutoActionPerformed
 
     public DefaultTableModel getDtmProdutos() {
         return dtmProdutos;
@@ -191,14 +185,14 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnCadastrarProduto;
-    private javax.swing.JButton btnEditarProduto;
-    private javax.swing.JButton btnExcluirProduto;
+    private javax.swing.JMenuItem btnCadastrarProduto;
+    private javax.swing.JMenuItem btnEditarProduto;
+    private javax.swing.JMenuItem btnExcluirProduto;
+    private javax.swing.JMenu btnProdutos;
+    private javax.swing.JDesktopPane jDesktopPane1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuCadastrarProduto;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable tabelaProduto;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

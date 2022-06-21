@@ -5,7 +5,6 @@
 package sistemacontroleestoquejava;
 
 import com.br.autenticacao.LoginPage;
-import com.br.produto.CadastrarProduto;
 
 /**
  *
