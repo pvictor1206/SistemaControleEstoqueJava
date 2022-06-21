@@ -18,10 +18,12 @@ import javax.swing.table.DefaultTableModel;
 public class HomePage extends javax.swing.JFrame {
     
     private DefaultTableModel dtmProdutos;
+    private int selecaoTabela;
 
    
     public HomePage() {
         initComponents();
+        
     }
 
     /**
@@ -55,7 +57,25 @@ public class HomePage extends javax.swing.JFrame {
             new String [] {
                 "Código", "Nome", "Preço", "Quantidade"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tableProdutos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tableProdutosMouseClicked(evt);
+            }
+        });
+        tableProdutos.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tableProdutosKeyReleased(evt);
+            }
+        });
         jScrollPane1.setViewportView(tableProdutos);
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
@@ -152,8 +172,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
                 
-                DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
                 
+                DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
                 CadastrarProduto cadProdutos = new CadastrarProduto(dtmProdutos);
                 jDesktopPane1.add(cadProdutos);
                 cadProdutos.setVisible(true);
@@ -165,14 +185,43 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_btnProdutosActionPerformed
 
     private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        EditarProduto editProdutos = new EditarProduto();
-        jDesktopPane1.add(editProdutos);
-        editProdutos.setVisible(true);
+        
+        if(tableProdutos.getSelectedRow() != -1){
+            
+            selecaoTabela = tableProdutos.getSelectedRow();
+            DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
+            
+            EditarProduto editProdutos = new EditarProduto(selecaoTabela,dtmProdutos);
+            jDesktopPane1.add(editProdutos);
+            editProdutos.setVisible(true);
+            
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Selecione um produto");
+            
+        }
+        
+        
     }//GEN-LAST:event_btnEditarProdutoActionPerformed
 
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
-        JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
+        if(tableProdutos.getSelectedRow() != -1){
+            DefaultTableModel dtnProdutos = (DefaultTableModel) tableProdutos.getModel();
+            dtnProdutos.removeRow(tableProdutos.getSelectedRow());
+        }else{
+            
+            JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
+            
+        }
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
+
+    private void tableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProdutosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableProdutosMouseClicked
+
+    private void tableProdutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableProdutosKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableProdutosKeyReleased
 
     public DefaultTableModel getDtmProdutos() {
         return dtmProdutos;

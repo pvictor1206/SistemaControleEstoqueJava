@@ -5,6 +5,7 @@
 package sistemacontroleestoquejava;
 
 import com.br.autenticacao.LoginPage;
+import com.br.home.HomePage;
 
 /**
  *
@@ -16,7 +17,7 @@ public class SistemaControleEstoqueJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        new LoginPage().setVisible(true);
+        new HomePage().setVisible(true);
     }
     
 }
