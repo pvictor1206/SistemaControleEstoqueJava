@@ -4,8 +4,9 @@
  */
 package sistemacontroleestoquejava;
 
-import com.br.autenticacao.LoginPage;
 import com.br.home.HomePage;
+import com.br.produtos.Produto;
+import java.util.Vector;
 
 /**
  *
@@ -17,6 +18,7 @@ public class SistemaControleEstoqueJava {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        
         new HomePage().setVisible(true);
     }
     

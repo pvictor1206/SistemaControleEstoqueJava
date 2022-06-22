@@ -4,6 +4,7 @@
  */
 package com.br.produtos;
 
+import java.util.Vector;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,10 +14,13 @@ import javax.swing.table.DefaultTableModel;
 public class CadastrarProduto extends javax.swing.JInternalFrame {
     
     private DefaultTableModel dtmProdutos;
-    //Criar um vetor de produtos...
+    private Vector<Produto> vectorDeProduto;
     
-    public CadastrarProduto(DefaultTableModel dtmProdutos) {
+    
+    public CadastrarProduto(DefaultTableModel dtmProdutos, Vector<Produto> vectorDeProduto) { 
         this.dtmProdutos = dtmProdutos;
+        this.vectorDeProduto = vectorDeProduto;
+        
         initComponents();
     }
 
@@ -128,7 +132,10 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdActionPerformed
-        Produto produto = new Produto(textCodigo.getText());
+        
+        Produto novoProduto = new Produto(textCodigo.getText());
+        vectorDeProduto.add(novoProduto);
+        
         Object[] dados = {textCodigo.getText(), txtNome.getText(), txtPreco.getText(),txtQuantidade.getText()};
         dtmProdutos.addRow(dados);
         this.dispose(); //fecha a janela
