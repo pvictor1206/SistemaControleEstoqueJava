@@ -8,14 +8,10 @@ import com.br.produtos.CadastrarProduto;
 import com.br.produtos.EditarProduto;
 import com.br.produtos.Produto;
 import java.awt.CardLayout;
+import java.util.Random;
 import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-
-/**
- *
- * @author paulo
- */
 public class HomePage extends javax.swing.JFrame {
     
     private DefaultTableModel dtmProdutos;
@@ -39,7 +35,7 @@ public class HomePage extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDesktopPane1 = new javax.swing.JDesktopPane();
+        jHomeProduto = new javax.swing.JDesktopPane();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProdutos = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
@@ -58,11 +54,11 @@ public class HomePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Nome", "Preço", "Quantidade"
+                "Código", "Nome", "Preço", "Quantidade", "Validade"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -84,22 +80,22 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jLabel1.setText("TABELA DE PRODUTOS");
 
-        jDesktopPane1.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jDesktopPane1.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jHomeProduto.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jHomeProduto.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
-        javax.swing.GroupLayout jDesktopPane1Layout = new javax.swing.GroupLayout(jDesktopPane1);
-        jDesktopPane1.setLayout(jDesktopPane1Layout);
-        jDesktopPane1Layout.setHorizontalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout jHomeProdutoLayout = new javax.swing.GroupLayout(jHomeProduto);
+        jHomeProduto.setLayout(jHomeProdutoLayout);
+        jHomeProdutoLayout.setHorizontalGroup(
+            jHomeProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
-            .addGroup(jDesktopPane1Layout.createSequentialGroup()
+            .addGroup(jHomeProdutoLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jDesktopPane1Layout.setVerticalGroup(
-            jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jDesktopPane1Layout.createSequentialGroup()
+        jHomeProdutoLayout.setVerticalGroup(
+            jHomeProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jHomeProdutoLayout.createSequentialGroup()
                 .addContainerGap(21, Short.MAX_VALUE)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
@@ -148,11 +144,11 @@ public class HomePage extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(jHomeProduto, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jDesktopPane1)
+            .addComponent(jHomeProduto)
         );
 
         pack();
@@ -160,11 +156,16 @@ public class HomePage extends javax.swing.JFrame {
 
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
                 
-                    
-                //vectorDeProdutos.add();
+                //Gera um código aleatório para o produto
+                Random random = new Random();
+                String valor = Integer.toString(random.nextInt((9999 - 1000) + 1) + 1000);
+      
+                Produto produto = new Produto(valor);    
+                vectorDeProdutos.add(produto);
                 DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
-                CadastrarProduto cadProdutos = new CadastrarProduto(dtmProdutos,vectorDeProdutos);
-                jDesktopPane1.add(cadProdutos);
+                int indice = vectorDeProdutos.size() - 1;
+                CadastrarProduto cadProdutos = new CadastrarProduto(dtmProdutos, vectorDeProdutos.get(indice));
+                jHomeProduto.add(cadProdutos);
                 cadProdutos.setVisible(true);
 
     }//GEN-LAST:event_btnCadastrarProdutoActionPerformed
@@ -181,7 +182,7 @@ public class HomePage extends javax.swing.JFrame {
             DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
             
             EditarProduto editProdutos = new EditarProduto(selecaoTabela,dtmProdutos);
-            jDesktopPane1.add(editProdutos);
+            jHomeProduto.add(editProdutos);
             editProdutos.setVisible(true);
             
         }else{
@@ -272,7 +273,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnEditarProduto;
     private javax.swing.JMenuItem btnExcluirProduto;
     private javax.swing.JMenu btnProdutos;
-    private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDesktopPane jHomeProduto;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
