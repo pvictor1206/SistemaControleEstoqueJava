@@ -16,7 +16,7 @@ public class HomePage extends javax.swing.JFrame {
     
     private DefaultTableModel dtmProdutos;
     private int selecaoTabela;
-    private Vector<Produto> vectorDeProdutos = new Vector<Produto>(); //Vetor de produtos
+    //private Vector<Produto> vectorDeProdutos = new Vector<Produto>(); //Vetor de produtos
     
 
    
@@ -157,14 +157,14 @@ public class HomePage extends javax.swing.JFrame {
     private void btnCadastrarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdutoActionPerformed
                 
                 //Gera um código aleatório para o produto
-                Random random = new Random();
-                String valor = Integer.toString(random.nextInt((9999 - 1000) + 1) + 1000);
+                //Random random = new Random();
+                //String valor = Integer.toString(random.nextInt((9999 - 1000) + 1) + 1000);
       
-                Produto produto = new Produto(valor);    
-                vectorDeProdutos.add(produto);
+                //Produto produto = new Produto(valor);    
+                //vectorDeProdutos.add(produto);
                 DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
-                int indice = vectorDeProdutos.size() - 1;
-                CadastrarProduto cadProdutos = new CadastrarProduto(dtmProdutos, vectorDeProdutos.get(indice));
+                //int indice = vectorDeProdutos.size() - 1;
+                CadastrarProduto cadProdutos = new CadastrarProduto(dtmProdutos);
                 jHomeProduto.add(cadProdutos);
                 cadProdutos.setVisible(true);
 
@@ -221,13 +221,7 @@ public class HomePage extends javax.swing.JFrame {
         this.dtmProdutos = dtmProdutos;
     }
 
-    public Vector<Produto> getVectorDeProdutos() {
-        return vectorDeProdutos;
-    }
 
-    public void setVectorDeProdutos(Vector<Produto> vectorDeProdutos) {
-        this.vectorDeProdutos = vectorDeProdutos;
-    }
     
     
 

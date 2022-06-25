@@ -4,16 +4,22 @@
  */
 package com.br.produtos;
 
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author paulo
  */
 public class ValidadeProduto extends javax.swing.JInternalFrame {
+    private ProdutoPerecivel produtoPerecivel;
+    private DefaultTableModel dtmProdutos;
 
-    /**
-     * Creates new form ValidadeProduto
-     */
-    public ValidadeProduto() {
+   
+    
+    public ValidadeProduto(DefaultTableModel dtmProdutos, ProdutoPerecivel produtoPerecivel) {
+        this.dtmProdutos = dtmProdutos;
+        this.produtoPerecivel = produtoPerecivel;
+        
         initComponents();
     }
 
@@ -27,34 +33,93 @@ public class ValidadeProduto extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
+        valueValidadeProduto = new javax.swing.JFormattedTextField();
+        btnValidadeProduto = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Validade do Produto");
 
         jLabel1.setText("Validade ");
 
+        try {
+            valueValidadeProduto.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        valueValidadeProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                valueValidadeProdutoActionPerformed(evt);
+            }
+        });
+
+        btnValidadeProduto.setText("OK");
+        btnValidadeProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnValidadeProdutoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(60, 60, 60)
-                .addComponent(jLabel1)
-                .addContainerGap(60, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(60, 60, 60)
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addComponent(valueValidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(51, 51, 51)
+                        .addComponent(btnValidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(23, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(36, 36, 36)
                 .addComponent(jLabel1)
-                .addContainerGap(105, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(valueValidadeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(btnValidadeProduto)
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void valueValidadeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_valueValidadeProdutoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_valueValidadeProdutoActionPerformed
+
+    private void btnValidadeProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnValidadeProdutoActionPerformed
+       
+        produtoPerecivel.setPrazoValidade(valueValidadeProduto.getText());
+        
+        
+        Object[] dados = {
+                produtoPerecivel.getCodProduto(), 
+                produtoPerecivel.getNomeProduto(), 
+                produtoPerecivel.getPrecoProduto(), 
+                produtoPerecivel.getQuantidadeProduto(),
+                produtoPerecivel.getPrazoValidade(),
+            };
+        
+        dtmProdutos.addRow(dados);
+            
+        this.dispose(); //fecha a janela
+        
+        
+        
+    }//GEN-LAST:event_btnValidadeProdutoActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnValidadeProduto;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JFormattedTextField valueValidadeProduto;
     // End of variables declaration//GEN-END:variables
 }
