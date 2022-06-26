@@ -4,6 +4,7 @@
  */
 package com.br.produtos;
 
+import com.br.budega.Budega;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -13,12 +14,13 @@ import javax.swing.table.DefaultTableModel;
 public class ValidadeProduto extends javax.swing.JInternalFrame {
     private ProdutoPerecivel produtoPerecivel;
     private DefaultTableModel dtmProdutos;
-
+    private Budega budega;
    
     
-    public ValidadeProduto(DefaultTableModel dtmProdutos, ProdutoPerecivel produtoPerecivel) {
+    public ValidadeProduto(DefaultTableModel dtmProdutos, ProdutoPerecivel produtoPerecivel, Budega budega) {
         this.dtmProdutos = dtmProdutos;
         this.produtoPerecivel = produtoPerecivel;
+        this.budega = budega;
         
         initComponents();
     }
@@ -108,6 +110,7 @@ public class ValidadeProduto extends javax.swing.JInternalFrame {
                 produtoPerecivel.getPrazoValidade(),
             };
         
+        budega.adicionarProduto(produtoPerecivel);
         dtmProdutos.addRow(dados);
             
         this.dispose(); //fecha a janela

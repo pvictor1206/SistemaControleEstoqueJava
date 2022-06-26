@@ -16,6 +16,6 @@ public interface IEstoque {
     public Produto buscar(String Codigo);
     public void apagar(Produto produto);
     public int quantidade();
-    public Produto produtosEmEsquete();
+    public Produto produtosEmEstoque();
     public Produto produtoEmFalta();
 }

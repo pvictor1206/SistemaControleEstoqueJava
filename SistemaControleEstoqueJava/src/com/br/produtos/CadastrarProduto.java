@@ -4,6 +4,8 @@
  */
 package com.br.produtos;
 
+import com.br.budega.Budega;
+import com.br.estoque.EstoqueVector;
 import java.util.Random;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -16,10 +18,12 @@ import javax.swing.table.DefaultTableModel;
 public class CadastrarProduto extends javax.swing.JInternalFrame {
     
     private DefaultTableModel dtmProdutos;
+    private Budega budega;
     
     
-    public CadastrarProduto(DefaultTableModel dtmProdutos) { 
+    public CadastrarProduto(DefaultTableModel dtmProdutos, Budega budega) { 
         this.dtmProdutos = dtmProdutos;
+        this.budega = budega;
         
         initComponents();
     }
@@ -196,7 +200,7 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
             produtoPerecivel.setQuantidadeProduto(Integer.parseInt(txtQuantidade.getText()));
   
             
-            ValidadeProduto validade = new ValidadeProduto(dtmProdutos,produtoPerecivel);
+            ValidadeProduto validade = new ValidadeProduto(dtmProdutos,produtoPerecivel,budega);
             jDesktopCadastrarProduto.add(validade);
             validade.setVisible(true);
             
@@ -221,7 +225,11 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
                 produto.getQuantidadeProduto(),
                 "--",
             };
+            
+            
+            budega.adicionarProduto(produto);
             dtmProdutos.addRow(dados);
+            
             
             this.dispose(); //fecha a janela
             

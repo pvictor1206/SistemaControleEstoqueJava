@@ -30,12 +30,12 @@ public class Budega {
     
     
     public void adicionarProduto(Produto produto){
-        
-        
+        estoque.adicionar(produto);
         
     }
     
     public void removerProduto(Produto produto){
+        estoque.apagar(produto);
         
     }
     
@@ -48,15 +48,17 @@ public class Budega {
     }
     
     public Produto consultarProduto(String codigo){
-        return null;
+        return estoque.buscar(codigo);
         
     }
     
     public Produto listarProduto(){
+        //Fazer um for
         return null;
     }
     
     public Produto produtosEmFalta(){
+        //FAzer um for
         return null;
     }
     
