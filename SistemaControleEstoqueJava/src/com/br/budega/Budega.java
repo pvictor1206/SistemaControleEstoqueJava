@@ -40,11 +40,12 @@ public class Budega {
     }
     
     public void venderProduto(String codigo, int quantidade){
+        estoque.buscar(codigo).setQuantidadeProduto(estoque.buscar(codigo).getQuantidadeProduto() - quantidade);
         
     }
     
     public void estocarProduto(String codigo, int quantidade){
-        
+        estoque.buscar(codigo).setQuantidadeProduto(estoque.buscar(codigo).getQuantidadeProduto() + quantidade);
     }
     
     public Produto consultarProduto(String codigo){
@@ -58,8 +59,8 @@ public class Budega {
     }
     
     public Produto produtosEmFalta(){
-        //FAzer um for
-        return null;
+        return estoque.produtoEmFalta();
+        
     }
     
     

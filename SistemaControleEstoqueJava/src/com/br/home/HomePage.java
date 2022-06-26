@@ -8,7 +8,10 @@ import com.br.budega.Budega;
 import com.br.estoque.EstoqueVector;
 import com.br.produtos.CadastrarProduto;
 import com.br.produtos.EditarProduto;
+import com.br.produtos.EstocarProdutoPage;
 import com.br.produtos.Produto;
+import com.br.produtos.ProdutosEmFaltaPage;
+import com.br.produtos.VenderProduto;
 import java.awt.CardLayout;
 import java.util.Random;
 import java.util.Vector;
@@ -18,7 +21,6 @@ public class HomePage extends javax.swing.JFrame {
     
     private DefaultTableModel dtmProdutos;
     private int selecaoTabela;
-    private String codigo;
     // O Estoque irá ser inserido na Budega
     private EstoqueVector estoque = new EstoqueVector();
     private Budega budega = new Budega(estoque);
@@ -42,7 +44,6 @@ public class HomePage extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         btnProdutos = new javax.swing.JMenu();
         btnCadastrarProduto = new javax.swing.JMenuItem();
-        btnEditarProduto = new javax.swing.JMenuItem();
         btnExcluirProduto = new javax.swing.JMenuItem();
         btnEstoque = new javax.swing.JMenu();
         btnVenderProduto = new javax.swing.JMenuItem();
@@ -121,14 +122,6 @@ public class HomePage extends javax.swing.JFrame {
         });
         btnProdutos.add(btnCadastrarProduto);
 
-        btnEditarProduto.setText("Editar Produto");
-        btnEditarProduto.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarProdutoActionPerformed(evt);
-            }
-        });
-        btnProdutos.add(btnEditarProduto);
-
         btnExcluirProduto.setText("Excluir Produto");
         btnExcluirProduto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -140,17 +133,37 @@ public class HomePage extends javax.swing.JFrame {
         jMenuBar1.add(btnProdutos);
 
         btnEstoque.setText("Estoque Budega");
+        btnEstoque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstoqueActionPerformed(evt);
+            }
+        });
 
         btnVenderProduto.setText("Vender Produto");
+        btnVenderProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVenderProdutoActionPerformed(evt);
+            }
+        });
         btnEstoque.add(btnVenderProduto);
 
         btnEstocarProduto.setText("Estocar Produto");
+        btnEstocarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstocarProdutoActionPerformed(evt);
+            }
+        });
         btnEstoque.add(btnEstocarProduto);
 
         btnListarProduto.setText("Listar Produto");
         btnEstoque.add(btnListarProduto);
 
         btnProdutosEmFalta.setText("Listar Produtos em Falta");
+        btnProdutosEmFalta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProdutosEmFaltaActionPerformed(evt);
+            }
+        });
         btnEstoque.add(btnProdutosEmFalta);
 
         jMenuBar1.add(btnEstoque);
@@ -185,36 +198,17 @@ public class HomePage extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null, "Selecione um produto para excluir");
     }//GEN-LAST:event_btnProdutosActionPerformed
 
-    private void btnEditarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarProdutoActionPerformed
-        
-        if(tableProdutos.getSelectedRow() != -1){
-            
-            selecaoTabela = tableProdutos.getSelectedRow();
-            DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
-            
-            EditarProduto editProdutos = new EditarProduto(selecaoTabela,dtmProdutos);
-            jHomeProduto.add(editProdutos);
-            editProdutos.setVisible(true);
-            
-        }else{
-            
-            JOptionPane.showMessageDialog(null, "Selecione um produto");
-            
-        }
-        
-        
-    }//GEN-LAST:event_btnEditarProdutoActionPerformed
-
     private void btnExcluirProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExcluirProdutoActionPerformed
         if(tableProdutos.getSelectedRow() != -1){
             
             DefaultTableModel dtnProdutos = (DefaultTableModel) tableProdutos.getModel();
             
             // Pega o código do produto clicado
-            //labelRemovido.setText(dtmProdutos.getValueAt(tableProdutos.getSelectedRow(), 0).toString());
-            //System.out.println(labelRemovido.);
+            
+            String codigo = String.valueOf(tableProdutos.getValueAt(tableProdutos.getSelectedRow(), 0));
+ 
             //Remove produto da Budega
-            //budega.removerProduto(budega.consultarProduto(labelRemovido.getText()));
+            budega.removerProduto(budega.consultarProduto(codigo));
             
             
             dtnProdutos.removeRow(tableProdutos.getSelectedRow());
@@ -232,6 +226,48 @@ public class HomePage extends javax.swing.JFrame {
     private void tableProdutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableProdutosKeyReleased
         // TODO add your handling code here:
     }//GEN-LAST:event_tableProdutosKeyReleased
+
+    private void btnProdutosEmFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosEmFaltaActionPerformed
+        ProdutosEmFaltaPage produtosEmFalta = new ProdutosEmFaltaPage(budega);
+        jHomeProduto.add(produtosEmFalta);
+        produtosEmFalta.setVisible(true);
+    }//GEN-LAST:event_btnProdutosEmFaltaActionPerformed
+
+    private void btnVenderProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenderProdutoActionPerformed
+        if(tableProdutos.getSelectedRow() != -1){
+            
+            DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
+            String codigo = String.valueOf(tableProdutos.getValueAt(tableProdutos.getSelectedRow(), 0));
+            
+            VenderProduto venderProduto = new VenderProduto(budega,codigo,tableProdutos.getSelectedRow(),dtmProdutos);
+            jHomeProduto.add(venderProduto);
+            venderProduto.setVisible(true);
+            
+            
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para venda");
+        }
+    }//GEN-LAST:event_btnVenderProdutoActionPerformed
+
+    private void btnEstoqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueActionPerformed
+        
+    }//GEN-LAST:event_btnEstoqueActionPerformed
+
+    private void btnEstocarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstocarProdutoActionPerformed
+        if(tableProdutos.getSelectedRow() != -1){
+            
+            DefaultTableModel dtmProdutos = (DefaultTableModel) tableProdutos.getModel();
+            String codigo = String.valueOf(tableProdutos.getValueAt(tableProdutos.getSelectedRow(), 0));
+            
+            EstocarProdutoPage estocarProduto = new EstocarProdutoPage(budega,codigo,tableProdutos.getSelectedRow(),dtmProdutos);
+            jHomeProduto.add(estocarProduto);
+            estocarProduto.setVisible(true);
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um produto para estocar");
+        }
+    }//GEN-LAST:event_btnEstocarProdutoActionPerformed
 
     public DefaultTableModel getDtmProdutos() {
         return dtmProdutos;
@@ -261,7 +297,6 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem btnCadastrarProduto;
-    private javax.swing.JMenuItem btnEditarProduto;
     private javax.swing.JMenuItem btnEstocarProduto;
     private javax.swing.JMenu btnEstoque;
     private javax.swing.JMenuItem btnExcluirProduto;

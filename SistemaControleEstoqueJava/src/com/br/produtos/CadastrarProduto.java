@@ -194,7 +194,6 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
             //PRODUTO PERECÍVEL
             
             ProdutoPerecivel produtoPerecivel = new ProdutoPerecivel(txtCodigo.getText());
-            
             produtoPerecivel.setNomeProduto(txtNome.getText());
             produtoPerecivel.setPrecoProduto(Double.parseDouble((txtPreco.getText()).replaceAll(",",".")));
             produtoPerecivel.setQuantidadeProduto(Integer.parseInt(txtQuantidade.getText()));

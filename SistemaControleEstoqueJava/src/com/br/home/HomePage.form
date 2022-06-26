@@ -20,14 +20,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCadastrarProdutoActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="btnEditarProduto">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Produto"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEditarProdutoActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnExcluirProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Excluir Produto"/>
@@ -42,16 +34,25 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Estoque Budega"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstoqueActionPerformed"/>
+          </Events>
           <SubComponents>
             <MenuItem class="javax.swing.JMenuItem" name="btnVenderProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Vender Produto"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnVenderProdutoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnEstocarProduto">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Estocar Produto"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnEstocarProdutoActionPerformed"/>
+              </Events>
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="btnListarProduto">
               <Properties>
@@ -62,6 +63,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar Produtos em Falta"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnProdutosEmFaltaActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>

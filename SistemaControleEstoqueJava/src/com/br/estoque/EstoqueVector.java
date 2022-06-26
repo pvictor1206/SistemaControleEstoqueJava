@@ -57,7 +57,16 @@ public class EstoqueVector implements IEstoque{
 
     @Override
     public int quantidade() {
-        return 0;
+        
+        int quant = 0;
+        
+        for(int i = 0; i < vectorDeProdutos.size(); i++){        
+            quant += vectorDeProdutos.get(i).getQuantidadeProduto();
+           
+            }
+        
+        
+        return quant;
     }
 
     @Override
@@ -67,6 +76,16 @@ public class EstoqueVector implements IEstoque{
 
     @Override
     public Produto produtoEmFalta() {
+        
+        //Verifica se um produto tem quantidade zero.
+        for(int i = 0; i < vectorDeProdutos.size(); i++){
+            //Verifica se o código do laço tem quantidade zero.
+            if(vectorDeProdutos.get(i).getQuantidadeProduto() == 0){
+                return vectorDeProdutos.get(i);
+            }
+            
+        }
+        
         return null;
     }
 
