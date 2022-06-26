@@ -31,12 +31,12 @@ public class EstoqueArray implements IEstoque{
     }
 
     @Override
-    public Produto produtosEmEstoque() {
+    public Produto[] produtosEmEstoque() {
         return null;
     }
 
     @Override
-    public Produto produtoEmFalta() {
+    public Produto[] produtoEmFalta() {
         return null;
     }
     

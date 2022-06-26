@@ -53,23 +53,17 @@ public class Budega {
         
     }
     
-    public Produto listarProduto(){
-        //Fazer um for
-        return null;
+    public Produto[] listarProduto(){
+        return estoque.produtosEmEstoque();
     }
     
-    public Produto produtosEmFalta(){
+    public Produto[] produtosEmFalta(){
+        System.out.println(estoque.produtoEmFalta());
         return estoque.produtoEmFalta();
         
     }
     
-    
-    
-    
-    
-    
-    
-    
+
     
     
     

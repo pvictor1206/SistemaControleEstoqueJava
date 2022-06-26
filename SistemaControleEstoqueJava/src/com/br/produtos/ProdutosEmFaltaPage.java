@@ -13,16 +13,19 @@ import com.br.budega.Budega;
 public class ProdutosEmFaltaPage extends javax.swing.JInternalFrame {
 
     private Budega budega;
-    private Produto produto;
+    //private Produto produto;
     
     public ProdutosEmFaltaPage(Budega budega) {
         this.budega = budega;
         initComponents();
+
         
-        produto = budega.produtosEmFalta();
-        
-        if(produto != null){
-            produtosFalta.setText(produto.getNomeProduto());
+        if(budega.produtosEmFalta() != null){
+            
+            for(int i = 0; i < budega.produtosEmFalta().length ; i++){
+                produtosFalta.setText(budega.produtosEmFalta()[i].getNomeProduto());
+            }
+     
         } else {
             produtosFalta.setText("Nenhum produto em falta no estoque");
         }

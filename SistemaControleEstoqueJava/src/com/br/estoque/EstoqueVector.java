@@ -70,22 +70,33 @@ public class EstoqueVector implements IEstoque{
     }
 
     @Override
-    public Produto produtosEmEstoque() {
+    public Produto[] produtosEmEstoque() {
         return null;
     }
 
     @Override
-    public Produto produtoEmFalta() {
+    public Produto[] produtoEmFalta() {
         
-        //Verifica se um produto tem quantidade zero.
+        boolean produtoEmFalta = false;
+        
+        Produto produto[] = null;
+       
+        
         for(int i = 0; i < vectorDeProdutos.size(); i++){
             //Verifica se o código do laço tem quantidade zero.
             if(vectorDeProdutos.get(i).getQuantidadeProduto() == 0){
-                return vectorDeProdutos.get(i);
+                produto[i] = vectorDeProdutos.get(i);
+                produtoEmFalta = true;
             }
             
         }
         
+        
+        
+        if(produtoEmFalta == true){
+            return produto;
+        }
+
         return null;
     }
 
