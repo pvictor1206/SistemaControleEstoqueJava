@@ -10,6 +10,7 @@ import com.br.produtos.CadastrarProduto;
 import com.br.produtos.EditarProduto;
 import com.br.produtos.EstocarProdutoPage;
 import com.br.produtos.Produto;
+import com.br.produtos.ProdutoEmEstoque;
 import com.br.produtos.ProdutosEmFaltaPage;
 import com.br.produtos.VenderProduto;
 import java.awt.CardLayout;
@@ -38,9 +39,9 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         jHomeProduto = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableProdutos = new javax.swing.JTable();
-        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         btnProdutos = new javax.swing.JMenu();
         btnCadastrarProduto = new javax.swing.JMenuItem();
@@ -53,6 +54,9 @@ public class HomePage extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jLabel1.setText("TABELA DE PRODUTOS");
 
         tableProdutos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -82,29 +86,34 @@ public class HomePage extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tableProdutos);
 
-        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jLabel1.setText("TABELA DE PRODUTOS");
-
-        jHomeProduto.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jHomeProduto.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jHomeProduto.setLayer(jScrollPane1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jHomeProdutoLayout = new javax.swing.GroupLayout(jHomeProduto);
         jHomeProduto.setLayout(jHomeProdutoLayout);
         jHomeProdutoLayout.setHorizontalGroup(
             jHomeProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
             .addGroup(jHomeProdutoLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(139, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(152, Short.MAX_VALUE))
+            .addGroup(jHomeProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jHomeProdutoLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         jHomeProdutoLayout.setVerticalGroup(
             jHomeProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jHomeProdutoLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 437, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(573, 573, 573))
+            .addGroup(jHomeProdutoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jHomeProdutoLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
 
         btnProdutos.setText("Produto");
@@ -156,6 +165,11 @@ public class HomePage extends javax.swing.JFrame {
         btnEstoque.add(btnEstocarProduto);
 
         btnListarProduto.setText("Listar Produto");
+        btnListarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListarProdutoActionPerformed(evt);
+            }
+        });
         btnEstoque.add(btnListarProduto);
 
         btnProdutosEmFalta.setText("Listar Produtos em Falta");
@@ -178,7 +192,9 @@ public class HomePage extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jHomeProduto)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jHomeProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
@@ -218,14 +234,6 @@ public class HomePage extends javax.swing.JFrame {
             
         }
     }//GEN-LAST:event_btnExcluirProdutoActionPerformed
-
-    private void tableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProdutosMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableProdutosMouseClicked
-
-    private void tableProdutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableProdutosKeyReleased
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tableProdutosKeyReleased
 
     private void btnProdutosEmFaltaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProdutosEmFaltaActionPerformed
         ProdutosEmFaltaPage produtosEmFalta = new ProdutosEmFaltaPage(budega);
@@ -268,6 +276,20 @@ public class HomePage extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Selecione um produto para estocar");
         }
     }//GEN-LAST:event_btnEstocarProdutoActionPerformed
+
+    private void btnListarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListarProdutoActionPerformed
+        ProdutoEmEstoque produtosEmEstoque = new ProdutoEmEstoque(budega);
+        jHomeProduto.add(produtosEmEstoque);
+        produtosEmEstoque.setVisible(true);
+    }//GEN-LAST:event_btnListarProdutoActionPerformed
+
+    private void tableProdutosKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tableProdutosKeyReleased
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableProdutosKeyReleased
+
+    private void tableProdutosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tableProdutosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tableProdutosMouseClicked
 
     public DefaultTableModel getDtmProdutos() {
         return dtmProdutos;

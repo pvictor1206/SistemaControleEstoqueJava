@@ -6,42 +6,39 @@ package com.br.produtos;
 
 import com.br.budega.Budega;
 import javax.swing.DefaultComboBoxModel;
-import javax.swing.JOptionPane;
 
 /**
  *
  * @author paulo
  */
-public class ProdutosEmFaltaPage extends javax.swing.JInternalFrame {
+public class ProdutoEmEstoque extends javax.swing.JInternalFrame {
 
     private Budega budega;
     
-    
-    public ProdutosEmFaltaPage(Budega budega) {
+    public ProdutoEmEstoque(Budega budega) {
         this.budega = budega;
         initComponents();
         
-        if(budega.produtosEmFalta() != null){
+        if(budega.listarProduto() != null){
             
-             int index = budega.produtosEmFalta().length;
+             int index = budega.listarProduto().length;
              System.out.println(index);
 
              String[] names = new String[index];
             
-             for(int i = 0; i < budega.produtosEmFalta().length ; i++){
-                 names[i] = budega.produtosEmFalta()[i].getNomeProduto();
+             for(int i = 0; i < budega.listarProduto().length ; i++){
+                 names[i] = budega.listarProduto()[i].getNomeProduto();
              }
              
-             listaProdutosEmFalta.setModel(new DefaultComboBoxModel<>(names));
+             listaProdutoEmEstoque.setModel(new DefaultComboBoxModel<>(names));
             
             
         }else{
             
-            String[] names = {"Nenhum produto em falta no estoque"};
-            listaProdutosEmFalta.setModel(new DefaultComboBoxModel<>(names));
+            String[] names = {"Nenhum produto no estoque"};
+            listaProdutoEmEstoque.setModel(new DefaultComboBoxModel<>(names));
             
         }
-     
     }
 
     /**
@@ -53,23 +50,23 @@ public class ProdutosEmFaltaPage extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jScrollPane2 = new javax.swing.JScrollPane();
-        listaProdutosEmFalta = new javax.swing.JList<>();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaProdutoEmEstoque = new javax.swing.JList<>();
 
         setClosable(true);
-        setTitle("Produtos em Falta");
+        setTitle("Produto em Estoque");
 
-        jScrollPane2.setViewportView(listaProdutosEmFalta);
+        jScrollPane1.setViewportView(listaProdutoEmEstoque);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 274, Short.MAX_VALUE)
         );
 
         pack();
@@ -77,7 +74,7 @@ public class ProdutosEmFaltaPage extends javax.swing.JInternalFrame {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JList<String> listaProdutosEmFalta;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JList<String> listaProdutoEmEstoque;
     // End of variables declaration//GEN-END:variables
 }

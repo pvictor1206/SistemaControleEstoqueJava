@@ -71,29 +71,68 @@ public class EstoqueVector implements IEstoque{
 
     @Override
     public Produto[] produtosEmEstoque() {
-        return null;
-    }
-
-    @Override
-    public Produto[] produtoEmFalta() {
+        int cont = 0;
+        int aux = 0;
         
-        boolean produtoEmFalta = false;
+        for(int i = 0; i < vectorDeProdutos.size(); i++){
+            if(vectorDeProdutos.get(i).getQuantidadeProduto() != 0){
+                cont += 1;
+            }
+            
+        }
         
-        Produto produto[] = null;
+        Produto produto[] = new Produto[cont];
+        
        
         
         for(int i = 0; i < vectorDeProdutos.size(); i++){
             //Verifica se o código do laço tem quantidade zero.
-            if(vectorDeProdutos.get(i).getQuantidadeProduto() == 0){
-                produto[i] = vectorDeProdutos.get(i);
-                produtoEmFalta = true;
+            if(vectorDeProdutos.get(i).getQuantidadeProduto() != 0){
+                produto[aux] = vectorDeProdutos.get(i);
+                aux++;
             }
             
         }
         
         
         
-        if(produtoEmFalta == true){
+        if(cont != 0){
+            return produto;
+        }
+
+        return null;
+    }
+
+    @Override
+    public Produto[] produtoEmFalta() {
+        
+        
+        int cont = 0;
+        int aux = 0;
+        
+        for(int i = 0; i < vectorDeProdutos.size(); i++){
+            if(vectorDeProdutos.get(i).getQuantidadeProduto() == 0){
+                cont += 1;
+            }
+            
+        }
+        
+        Produto produto[] = new Produto[cont];
+        
+       
+        
+        for(int i = 0; i < vectorDeProdutos.size(); i++){
+            //Verifica se o código do laço tem quantidade zero.
+            if(vectorDeProdutos.get(i).getQuantidadeProduto() == 0){
+                produto[aux] = vectorDeProdutos.get(i);
+                aux++;
+            }
+            
+        }
+        
+        
+        
+        if(cont != 0){
             return produto;
         }
 

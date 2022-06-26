@@ -230,7 +230,7 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
             dtmProdutos.addRow(dados);
             
             
-            this.dispose(); //fecha a janela
+        this.dispose(); //fecha a janela
             
         }
         

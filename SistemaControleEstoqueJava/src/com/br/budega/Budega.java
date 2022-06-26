@@ -58,7 +58,6 @@ public class Budega {
     }
     
     public Produto[] produtosEmFalta(){
-        System.out.println(estoque.produtoEmFalta());
         return estoque.produtoEmFalta();
         
     }
