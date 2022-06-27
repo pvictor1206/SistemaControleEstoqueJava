@@ -58,8 +58,6 @@ public class HomePage extends javax.swing.JFrame {
         btnEstocarProduto = new javax.swing.JMenuItem();
         btnListarProduto = new javax.swing.JMenuItem();
         btnProdutosEmFalta = new javax.swing.JMenuItem();
-        btnAuditora = new javax.swing.JMenu();
-        btnProdutosVencidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -198,13 +196,6 @@ public class HomePage extends javax.swing.JFrame {
         btnEstoque.add(btnProdutosEmFalta);
 
         jMenuBar1.add(btnEstoque);
-
-        btnAuditora.setText("Auditora");
-
-        btnProdutosVencidos.setText("Produtos vencidos");
-        btnAuditora.add(btnProdutosVencidos);
-
-        jMenuBar1.add(btnAuditora);
 
         setJMenuBar(jMenuBar1);
 
@@ -357,7 +348,6 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenu btnAuditora;
     private javax.swing.JMenuItem btnCadastrarProduto;
     private javax.swing.JMenuItem btnConsultarProduto;
     private javax.swing.JMenuItem btnEstocarProduto;
@@ -366,7 +356,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JMenuItem btnListarProduto;
     private javax.swing.JMenu btnProdutos;
     private javax.swing.JMenuItem btnProdutosEmFalta;
-    private javax.swing.JMenuItem btnProdutosVencidos;
     private javax.swing.JMenuItem btnVenderProduto;
     private javax.swing.JDesktopPane jHomeProduto;
     private javax.swing.JLabel jLabel1;

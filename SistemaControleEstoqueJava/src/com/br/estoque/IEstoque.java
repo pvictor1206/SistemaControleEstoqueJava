@@ -15,7 +15,7 @@ import com.br.produtos.Produto;
 public interface IEstoque {
     
     public void adicionar(Produto produto)  throws PJCException;
-    public Produto buscar(String Codigo) throws PNEException;
+    public Produto buscar(String codigo) throws PNEException;
     public void apagar(Produto produto);
     public int quantidade();
     public Produto[] produtosEmEstoque();
