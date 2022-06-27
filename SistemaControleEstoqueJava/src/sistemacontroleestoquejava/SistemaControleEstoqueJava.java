@@ -15,15 +15,8 @@ import java.util.Vector;
  * @author paulo
  */
 public class SistemaControleEstoqueJava {
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) {
-        
-        
-        
     
+    public static void main(String[] args) {
         new HomePage().setVisible(true);
     }
     

@@ -4,8 +4,12 @@
  */
 package com.br.estoque;
 
+import com.br.exception.PJCException;
+import com.br.exception.PNEException;
 import com.br.produtos.Produto;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -16,34 +20,45 @@ public class EstoqueVector implements IEstoque{
     private Vector<Produto> vectorDeProdutos = new Vector<Produto>(); //Vetor de produtos
 
     @Override
-    public void adicionar(Produto produto) {
+    public void adicionar(Produto produto) throws PJCException{
+        
+        for(int i = 0; i < vectorDeProdutos.size(); i++){
+            //Pesquisar se existe um produto com esse código
+            if(vectorDeProdutos.get(i).getCodProduto().equals(produto.getCodProduto())){
+                throw new PJCException(produto);
+            } 
+        }
+        
         vectorDeProdutos.add(produto);
+        
         for(int i = 0; i < vectorDeProdutos.size(); i++){
                 System.out.println(vectorDeProdutos.get(i).getNomeProduto());
            
             }
         
             System.out.println("-----------------------");
-        
+ 
     }
 
     @Override
-    public Produto buscar(String Codigo) {
+    public Produto buscar(String codigo) throws PNEException{
+        
         
         // Busca em uma laço o produto por meio de um código.
         for(int i = 0; i < vectorDeProdutos.size(); i++){
             
-            if(vectorDeProdutos.get(i).getCodProduto().equals(Codigo)){
+            if(vectorDeProdutos.get(i).getCodProduto().equals(codigo)){
                 return vectorDeProdutos.get(i);
             }
             
         }
         
-        return null;
+        // Se não encontrar nenhum produto com esse código
+        throw new PNEException(codigo);
     }
 
     @Override
-    public void apagar(Produto produto) {
+    public void apagar(Produto produto){
         for(int i = 0; i < vectorDeProdutos.size(); i++){
             //Verifica se o código do laço é o mesmo do produto, se for, será removido..
             if(vectorDeProdutos.get(i).getCodProduto().equals(produto.getCodProduto())){
@@ -51,6 +66,9 @@ public class EstoqueVector implements IEstoque{
             }
             
         }
+        
+        // A pessoa clica no produto para deletar...
+        //throw new PNEException(produto.getCodProduto());
         
         
     }

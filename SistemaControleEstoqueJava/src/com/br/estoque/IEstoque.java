@@ -4,6 +4,8 @@
  */
 package com.br.estoque;
 
+import com.br.exception.PJCException;
+import com.br.exception.PNEException;
 import com.br.produtos.Produto;
 
 /**
@@ -12,8 +14,8 @@ import com.br.produtos.Produto;
  */
 public interface IEstoque {
     
-    public void adicionar(Produto produto);
-    public Produto buscar(String Codigo);
+    public void adicionar(Produto produto)  throws PJCException;
+    public Produto buscar(String Codigo) throws PNEException;
     public void apagar(Produto produto);
     public int quantidade();
     public Produto[] produtosEmEstoque();

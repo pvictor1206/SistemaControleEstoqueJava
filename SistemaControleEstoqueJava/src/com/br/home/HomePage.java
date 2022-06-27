@@ -5,8 +5,11 @@
 package com.br.home;
 
 import com.br.budega.Budega;
+import com.br.estoque.EstoqueArray;
 import com.br.estoque.EstoqueVector;
+import com.br.exception.PNEException;
 import com.br.produtos.CadastrarProduto;
+import com.br.produtos.ConsultarProduto;
 import com.br.produtos.EditarProduto;
 import com.br.produtos.EstocarProdutoPage;
 import com.br.produtos.Produto;
@@ -16,6 +19,8 @@ import com.br.produtos.VenderProduto;
 import java.awt.CardLayout;
 import java.util.Random;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 public class HomePage extends javax.swing.JFrame {
@@ -24,6 +29,7 @@ public class HomePage extends javax.swing.JFrame {
     private int selecaoTabela;
     // O Estoque irá ser inserido na Budega
     private EstoqueVector estoque = new EstoqueVector();
+    //private EstoqueArray estoque = new EstoqueArray();
     private Budega budega = new Budega(estoque);
     
 
@@ -46,11 +52,14 @@ public class HomePage extends javax.swing.JFrame {
         btnProdutos = new javax.swing.JMenu();
         btnCadastrarProduto = new javax.swing.JMenuItem();
         btnExcluirProduto = new javax.swing.JMenuItem();
+        btnConsultarProduto = new javax.swing.JMenuItem();
         btnEstoque = new javax.swing.JMenu();
         btnVenderProduto = new javax.swing.JMenuItem();
         btnEstocarProduto = new javax.swing.JMenuItem();
         btnListarProduto = new javax.swing.JMenuItem();
         btnProdutosEmFalta = new javax.swing.JMenuItem();
+        btnAuditora = new javax.swing.JMenu();
+        btnProdutosVencidos = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Home");
@@ -139,6 +148,14 @@ public class HomePage extends javax.swing.JFrame {
         });
         btnProdutos.add(btnExcluirProduto);
 
+        btnConsultarProduto.setText("Consultar Produto");
+        btnConsultarProduto.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarProdutoActionPerformed(evt);
+            }
+        });
+        btnProdutos.add(btnConsultarProduto);
+
         jMenuBar1.add(btnProdutos);
 
         btnEstoque.setText("Estoque Budega");
@@ -182,6 +199,13 @@ public class HomePage extends javax.swing.JFrame {
 
         jMenuBar1.add(btnEstoque);
 
+        btnAuditora.setText("Auditora");
+
+        btnProdutosVencidos.setText("Produtos vencidos");
+        btnAuditora.add(btnProdutosVencidos);
+
+        jMenuBar1.add(btnAuditora);
+
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -223,8 +247,12 @@ public class HomePage extends javax.swing.JFrame {
             
             String codigo = String.valueOf(tableProdutos.getValueAt(tableProdutos.getSelectedRow(), 0));
  
-            //Remove produto da Budega
-            budega.removerProduto(budega.consultarProduto(codigo));
+            try {
+                //Remove produto da Budega
+                budega.removerProduto(budega.consultarProduto(codigo));
+            } catch (PNEException ex) {
+                Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             
             dtnProdutos.removeRow(tableProdutos.getSelectedRow());
@@ -291,6 +319,17 @@ public class HomePage extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tableProdutosMouseClicked
 
+    private void btnConsultarProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarProdutoActionPerformed
+        
+        try {
+            ConsultarProduto consultar = new ConsultarProduto(budega);
+            jHomeProduto.add(consultar);
+            consultar.setVisible(true);
+        } catch (PNEException ex) {
+            Logger.getLogger(HomePage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_btnConsultarProdutoActionPerformed
+
     public DefaultTableModel getDtmProdutos() {
         return dtmProdutos;
     }
@@ -318,13 +357,16 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenu btnAuditora;
     private javax.swing.JMenuItem btnCadastrarProduto;
+    private javax.swing.JMenuItem btnConsultarProduto;
     private javax.swing.JMenuItem btnEstocarProduto;
     private javax.swing.JMenu btnEstoque;
     private javax.swing.JMenuItem btnExcluirProduto;
     private javax.swing.JMenuItem btnListarProduto;
     private javax.swing.JMenu btnProdutos;
     private javax.swing.JMenuItem btnProdutosEmFalta;
+    private javax.swing.JMenuItem btnProdutosVencidos;
     private javax.swing.JMenuItem btnVenderProduto;
     private javax.swing.JDesktopPane jHomeProduto;
     private javax.swing.JLabel jLabel1;

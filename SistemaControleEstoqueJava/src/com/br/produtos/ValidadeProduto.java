@@ -5,6 +5,10 @@
 package com.br.produtos;
 
 import com.br.budega.Budega;
+import com.br.exception.PJCException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -110,8 +114,14 @@ public class ValidadeProduto extends javax.swing.JInternalFrame {
                 produtoPerecivel.getPrazoValidade(),
             };
         
-        budega.adicionarProduto(produtoPerecivel);
-        dtmProdutos.addRow(dados);
+        try {
+            budega.adicionarProduto(produtoPerecivel);
+            dtmProdutos.addRow(dados);
+        } catch (PJCException ex) {
+            JOptionPane.showMessageDialog(null, "Produto já cadastrado");
+            Logger.getLogger(ValidadeProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
             
         this.dispose(); //fecha a janela
         

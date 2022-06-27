@@ -5,6 +5,9 @@
 package com.br.produtos;
 
 import com.br.budega.Budega;
+import com.br.exception.PNEException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -87,9 +90,22 @@ public class EstocarProdutoPage extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEstoqueProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstoqueProdutoActionPerformed
-        int newQuantidade = budega.consultarProduto(codigo).getQuantidadeProduto() + Integer.parseInt(txtQuantProduto.getText());
+        int newQuantidade = 0;
+        try {
+            newQuantidade = budega.consultarProduto(codigo).getQuantidadeProduto() + Integer.parseInt(txtQuantProduto.getText());
+            if(newQuantidade < 0){
+                newQuantidade = 0;
+            }
+            
+        } catch (PNEException ex) {
+            Logger.getLogger(EstocarProdutoPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
-        budega.consultarProduto(codigo).setQuantidadeProduto(newQuantidade);
+        try {
+            budega.consultarProduto(codigo).setQuantidadeProduto(newQuantidade);
+        } catch (PNEException ex) {
+            Logger.getLogger(EstocarProdutoPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
         dtmProdutos.setValueAt(Integer.toString(newQuantidade), indiceEdicao,3);
         
         

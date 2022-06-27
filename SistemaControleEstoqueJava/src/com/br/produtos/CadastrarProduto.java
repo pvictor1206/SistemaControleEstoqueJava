@@ -6,8 +6,11 @@ package com.br.produtos;
 
 import com.br.budega.Budega;
 import com.br.estoque.EstoqueVector;
+import com.br.exception.PJCException;
 import java.util.Random;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author paulo
  */
-public class CadastrarProduto extends javax.swing.JInternalFrame {
+public class CadastrarProduto extends javax.swing.JInternalFrame  {
     
     private DefaultTableModel dtmProdutos;
     private Budega budega;
@@ -188,8 +191,8 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
 
     private void btnCadastrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarProdActionPerformed
 
-
-        if(caixaPerecivel.getSelectedItem().equals("Sim")){
+        if(Integer.parseInt(txtQuantidade.getText()) > 0 && Double.parseDouble((txtPreco.getText()).replaceAll(",",".")) > 0){
+            if(caixaPerecivel.getSelectedItem().equals("Sim")){
             
             //PRODUTO PERECÍVEL
             
@@ -226,13 +229,24 @@ public class CadastrarProduto extends javax.swing.JInternalFrame {
             };
             
             
-            budega.adicionarProduto(produto);
-            dtmProdutos.addRow(dados);
+            try {
+                budega.adicionarProduto(produto);
+                dtmProdutos.addRow(dados);
+                this.dispose(); //fecha a janela
+            } catch (PJCException ex) {
+                JOptionPane.showMessageDialog(null, "Produto já cadastrado");
+                Logger.getLogger(CadastrarProduto.class.getName()).log(Level.SEVERE, null, ex);
+            }
             
             
-        this.dispose(); //fecha a janela
+            
+        
             
         }
+        }else{
+            JOptionPane.showMessageDialog(null, "Não é permitido números negativa");
+        }
+        
         
         
         

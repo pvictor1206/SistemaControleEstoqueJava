@@ -5,6 +5,9 @@
 package com.br.produtos;
 
 import com.br.budega.Budega;
+import com.br.exception.PNEException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -87,13 +90,20 @@ public class VenderProduto extends javax.swing.JInternalFrame {
 
     private void btnVendaProdutoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVendaProdutoActionPerformed
         
-        int newQuantidade = budega.consultarProduto(codigo).getQuantidadeProduto() - Integer.parseInt(txtQuantProduto.getText());
-
-        budega.consultarProduto(codigo).setQuantidadeProduto(newQuantidade);
-        dtmProdutos.setValueAt(Integer.toString(newQuantidade), indiceEdicao,3);
-        
-        
-        this.dispose(); //fecha a janela
+        try {
+            int newQuantidade = budega.consultarProduto(codigo).getQuantidadeProduto() - Integer.parseInt(txtQuantProduto.getText());
+            if(newQuantidade < 0){
+                newQuantidade = 0;
+            }
+            
+            budega.consultarProduto(codigo).setQuantidadeProduto(newQuantidade);
+            dtmProdutos.setValueAt(Integer.toString(newQuantidade), indiceEdicao,3);
+            
+            
+            this.dispose(); //fecha a janela
+        } catch (PNEException ex) {
+            Logger.getLogger(VenderProduto.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_btnVendaProdutoActionPerformed
 
 

@@ -5,6 +5,8 @@
 package com.br.budega;
 
 import com.br.estoque.IEstoque;
+import com.br.exception.PJCException;
+import com.br.exception.PNEException;
 import com.br.produtos.Produto;
 
 /**
@@ -29,7 +31,7 @@ public class Budega {
     
     
     
-    public void adicionarProduto(Produto produto){
+    public void adicionarProduto(Produto produto) throws PJCException{
         estoque.adicionar(produto);
         
     }
@@ -39,16 +41,16 @@ public class Budega {
         
     }
     
-    public void venderProduto(String codigo, int quantidade){
+    public void venderProduto(String codigo, int quantidade) throws PNEException{
         estoque.buscar(codigo).setQuantidadeProduto(estoque.buscar(codigo).getQuantidadeProduto() - quantidade);
         
     }
     
-    public void estocarProduto(String codigo, int quantidade){
+    public void estocarProduto(String codigo, int quantidade) throws PNEException{
         estoque.buscar(codigo).setQuantidadeProduto(estoque.buscar(codigo).getQuantidadeProduto() + quantidade);
     }
     
-    public Produto consultarProduto(String codigo){
+    public Produto consultarProduto(String codigo) throws PNEException{
         return estoque.buscar(codigo);
         
     }
