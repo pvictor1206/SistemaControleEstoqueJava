@@ -14,8 +14,11 @@ import com.br.produtos.EditarProduto;
 import com.br.produtos.EstocarProdutoPage;
 import com.br.produtos.Produto;
 import com.br.produtos.ProdutoEmEstoque;
+import com.br.produtos.ProdutoPerecivel;
 import com.br.produtos.ProdutosEmFaltaPage;
 import com.br.produtos.VenderProduto;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.awt.CardLayout;
 import java.util.Random;
 import java.util.Vector;
@@ -31,12 +34,14 @@ public class HomePage extends javax.swing.JFrame {
     private EstoqueVector estoque = new EstoqueVector();
     //private EstoqueArray estoque = new EstoqueArray();
     private Budega budega = new Budega(estoque);
+   
     
-
+   
    
     public HomePage() {
         
         initComponents();
+
                 
     }
 

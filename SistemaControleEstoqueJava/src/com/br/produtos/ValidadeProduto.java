@@ -6,6 +6,7 @@ package com.br.produtos;
 
 import com.br.budega.Budega;
 import com.br.exception.PJCException;
+import com.thoughtworks.xstream.XStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,12 +20,14 @@ public class ValidadeProduto extends javax.swing.JInternalFrame {
     private ProdutoPerecivel produtoPerecivel;
     private DefaultTableModel dtmProdutos;
     private Budega budega;
+    private XStream xstream;
    
     
-    public ValidadeProduto(DefaultTableModel dtmProdutos, ProdutoPerecivel produtoPerecivel, Budega budega) {
+    public ValidadeProduto(DefaultTableModel dtmProdutos, ProdutoPerecivel produtoPerecivel, Budega budega, XStream xstream) {
         this.dtmProdutos = dtmProdutos;
         this.produtoPerecivel = produtoPerecivel;
         this.budega = budega;
+        this.xstream = xstream;
         
         initComponents();
     }
@@ -117,6 +120,10 @@ public class ValidadeProduto extends javax.swing.JInternalFrame {
         try {
             budega.adicionarProduto(produtoPerecivel);
             dtmProdutos.addRow(dados);
+            
+            String xml = xstream.toXML(produtoPerecivel);
+            System.out.println(xml);
+            
         } catch (PJCException ex) {
             JOptionPane.showMessageDialog(null, "Produto já cadastrado");
             Logger.getLogger(ValidadeProduto.class.getName()).log(Level.SEVERE, null, ex);

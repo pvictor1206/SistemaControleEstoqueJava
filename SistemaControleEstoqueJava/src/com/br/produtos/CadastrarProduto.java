@@ -7,6 +7,8 @@ package com.br.produtos;
 import com.br.budega.Budega;
 import com.br.estoque.EstoqueVector;
 import com.br.exception.PJCException;
+import com.thoughtworks.xstream.XStream;
+import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.util.Random;
 import java.util.Vector;
 import java.util.logging.Level;
@@ -22,6 +24,10 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
     
     private DefaultTableModel dtmProdutos;
     private Budega budega;
+    
+    XStream xstream = new XStream(new DomDriver());
+    
+    //String xml = xstream.toXML(produto);
     
     
     public CadastrarProduto(DefaultTableModel dtmProdutos, Budega budega) { 
@@ -202,7 +208,7 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
             produtoPerecivel.setQuantidadeProduto(Integer.parseInt(txtQuantidade.getText()));
   
             
-            ValidadeProduto validade = new ValidadeProduto(dtmProdutos,produtoPerecivel,budega);
+            ValidadeProduto validade = new ValidadeProduto(dtmProdutos,produtoPerecivel,budega,xstream);
             jDesktopCadastrarProduto.add(validade);
             validade.setVisible(true);
             
@@ -218,7 +224,10 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
             produto.setNomeProduto(txtNome.getText());
             produto.setPrecoProduto(Double.parseDouble((txtPreco.getText()).replaceAll(",",".")));
             produto.setQuantidadeProduto(Integer.parseInt(txtQuantidade.getText()));
-
+            
+            String xml = xstream.toXML(produto);
+            System.out.println(xml);
+            
 
             Object[] dados = {
                 produto.getCodProduto(), 
@@ -246,6 +255,9 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
         }else{
             JOptionPane.showMessageDialog(null, "Não é permitido números negativa");
         }
+        
+        
+        
         
         
         

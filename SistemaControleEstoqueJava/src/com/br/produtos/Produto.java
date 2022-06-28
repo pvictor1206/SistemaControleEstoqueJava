@@ -19,6 +19,7 @@ public class Produto {
         
     }
 
+
     public String getCodProduto() {
         return codProduto;
     }
