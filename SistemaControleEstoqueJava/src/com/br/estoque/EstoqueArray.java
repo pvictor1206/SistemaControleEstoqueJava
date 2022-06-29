@@ -20,12 +20,7 @@ public class EstoqueArray implements IEstoque{
     @Override
     public void adicionar(Produto produto)  throws PJCException{
         ArrayDeproduto.add(produto);
-        for(int i = 0; i < ArrayDeproduto.size(); i++){
-                System.out.println(ArrayDeproduto.get(i).getNomeProduto());
-           
-            }
         
-            System.out.println("-----------------------");
                 
     }
 

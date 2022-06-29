@@ -7,6 +7,7 @@ package com.br.produtos;
 import com.br.budega.Budega;
 import com.br.estoque.EstoqueVector;
 import com.br.exception.PJCException;
+import com.br.home.Arquivo;
 import com.thoughtworks.xstream.XStream;
 import com.thoughtworks.xstream.io.xml.DomDriver;
 import java.util.Random;
@@ -26,8 +27,7 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
     private Budega budega;
     
     XStream xstream = new XStream(new DomDriver());
-    
-    //String xml = xstream.toXML(produto);
+
     
     
     public CadastrarProduto(DefaultTableModel dtmProdutos, Budega budega) { 
@@ -225,7 +225,14 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
             produto.setPrecoProduto(Double.parseDouble((txtPreco.getText()).replaceAll(",",".")));
             produto.setQuantidadeProduto(Integer.parseInt(txtQuantidade.getText()));
             
+            xstream.alias("Produto", Produto.class);
             String xml = xstream.toXML(produto);
+           
+            Arquivo arquivo = new Arquivo();
+            
+            
+            
+            arquivo.gerarArquivo(xml);
             System.out.println(xml);
             
 
@@ -296,4 +303,6 @@ public class CadastrarProduto extends javax.swing.JInternalFrame  {
     private javax.swing.JFormattedTextField txtPreco;
     private javax.swing.JFormattedTextField txtQuantidade;
     // End of variables declaration//GEN-END:variables
+
+ 
 }

@@ -31,12 +31,7 @@ public class EstoqueVector implements IEstoque{
         
         vectorDeProdutos.add(produto);
         
-        for(int i = 0; i < vectorDeProdutos.size(); i++){
-                System.out.println(vectorDeProdutos.get(i).getNomeProduto());
-           
-            }
-        
-            System.out.println("-----------------------");
+       
  
     }
 

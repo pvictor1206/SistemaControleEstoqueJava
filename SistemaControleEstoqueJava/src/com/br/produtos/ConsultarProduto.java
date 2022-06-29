@@ -136,6 +136,7 @@ public class ConsultarProduto extends javax.swing.JInternalFrame {
                 
             }
         } catch (PNEException ex) {
+            JOptionPane.showMessageDialog(null, "Nenhum produto encontrado");
             Logger.getLogger(ConsultarProduto.class.getName()).log(Level.SEVERE, null, ex);
         }
         

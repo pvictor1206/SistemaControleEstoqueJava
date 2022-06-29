@@ -7,16 +7,15 @@ package main;
 import com.br.home.HomePage;
 
 /**
- *
- * @author paulo
+ * Trabalho de Técnicas de Programação 
+ * @author Paulo Magalhães
+ * Matricula: 511130
  */
 public class Main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         new HomePage().setVisible(true);
+        
     }
     
 }

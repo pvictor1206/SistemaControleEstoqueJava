@@ -6,6 +6,7 @@ package com.br.produtos;
 
 import com.br.budega.Budega;
 import com.br.exception.PJCException;
+import com.br.home.Arquivo;
 import com.thoughtworks.xstream.XStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -122,6 +123,11 @@ public class ValidadeProduto extends javax.swing.JInternalFrame {
             dtmProdutos.addRow(dados);
             
             String xml = xstream.toXML(produtoPerecivel);
+            
+            Arquivo arquivo = new Arquivo();
+            
+            arquivo.gerarArquivo(xml);
+   
             System.out.println(xml);
             
         } catch (PJCException ex) {
