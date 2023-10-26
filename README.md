@@ -2,6 +2,9 @@
 
 Este projeto envolve a elaboração de um diagrama entidade-relacionamento (DER) para ilustrar as entidades, atributos e relacionamentos envolvidos no domínio acadêmico.
 
+### Diagrama
+![Diagrama Banco de Dados](https://github.com/pvictor1206/SistemaControleEstoqueJava/blob/main/diagrama_banco_de_dados.jpg)
+
 ## Requisitos de dados:
 
 ### Unidades Acadêmicas e Departamentos
