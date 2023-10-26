@@ -10,6 +10,8 @@ Neste sistema, identificamos duas entidades principais: “estoque” e “produ
 
 ### Classe Produto
 
+![Diagrama Produtos](https://github.com/pvictor1206/SistemaControleEstoqueJava/blob/main/diagramaProduto.png)
+
 A classe Produto possui os seguintes atributos (privados): código, nome, preço e quantidade em estoque. Além de Métodos (públicos) na classe Produto que permitam recuperar e atribuir valores a esses atributos.
 
 ### Classe ProdutoPerecivel
@@ -26,9 +28,13 @@ O método adicionar da entidade “estoque” lança uma exceção de “Produto
 
 ## Interface IEstoque
 
+![Diagrama Estoque](https://github.com/pvictor1206/SistemaControleEstoqueJava/blob/main/diagramaEstoque.png)
+
 Interface IEstoque, com a assinatura dos métodos citados (métodos buscar e apagar devem levantar a exceção PNEException, método adicionar deve lançar a exceção PJCException), implementações: EstoqueArray e EstoqueVector.
 
 ## Classe Bodega
+
+![Diagrama Bodega](https://github.com/pvictor1206/SistemaControleEstoqueJava/blob/main/diagramaBodega.png)
 
 Classe chamada Bodega, possui um atributo estoque do tipo IEstoque e um construtor que recebe como argumento uma implementação da interface IEstoque a qual deve ser atribuída ao atributo estoque. Os produtos devem ser armazenados no estoque. Além disso, a classe Bodega deve possuir métodos para adicionar produtos ao estoque, remover produtos do estoque, vender (que diminui a quantidade de um determinado produto em estoque), estocar (aumentar a quantidade do produto estocado), consultar produto e listar produtos em estoque e em falta.
 
